@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selah Spaces — Premium Residential Cleaning</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0A0A0A;
+    --surface: #141414;
+    --card: #1C1C1C;
+    --gold: #C9A96E;
+    --gold-light: #DFC28E;
+    --white: #F7F3EE;
+    --muted: #6B6B6B;
+    --border: rgba(201,169,110,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 24px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400; letter-spacing: 0.08em;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  nav a.nav-cta {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px; transition: opacity 0.2s;
+  }
+  nav a.nav-cta:hover { opacity: 0.7; }
+  .lang-toggle {
+    display: flex; align-items: center;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .lang-btn {
+    background: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); padding: 7px 14px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .lang-btn.active { background: var(--gold); color: var(--black); }
+  .lang-btn:hover:not(.active) { color: var(--white); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(201,169,110,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .hero-word {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(72px, 14vw, 160px);
+    font-weight: 300; line-height: 0.9;
+    color: var(--white); letter-spacing: -0.02em;
+    opacity: 0; animation: fadeIn 1.4s ease 0.5s forwards;
+  }
+  .hero-word em { color: var(--gold); font-style: italic; }
+  .hero-sub {
+    font-size: clamp(14px, 2vw, 17px); font-weight: 300;
+    color: var(--muted); max-width: 460px; line-height: 1.7;
+    margin-top: 40px;
+    opacity: 0; animation: fadeUp 0.8s ease 1.2s forwards;
+  }
+  .hero-cta {
+    margin-top: 52px;
+    opacity: 0; animation: fadeUp 0.8s ease 1.5s forwards;
+  }
+  .btn-gold {
+    display: inline-block;
+    padding: 16px 44px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; cursor: pointer; background: transparent;
+    transition: background 0.3s, color 0.3s;
+  }
+  .btn-gold:hover { background: var(--gold); color: var(--black); }
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeIn 1s ease 2s forwards;
+  }
+  .hero-scroll span {
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+  }
+  .scroll-line {
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 60px; height: 1px; background: var(--gold);
+    margin: 0 auto 24px;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 120px 48px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .section-eyebrow {
+    text-align: center;
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px); font-weight: 300;
+    text-align: center; line-height: 1.15; margin-bottom: 64px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+  }
+  .service-card {
+    background: var(--card);
+    padding: 48px 36px;
+    border-top: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .service-card:hover { border-top-color: var(--gold); }
+  .service-icon {
+    font-size: 28px; margin-bottom: 24px; display: block;
+  }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 400; margin-bottom: 12px;
+  }
+  .service-desc {
+    font-size: 14px; color: var(--muted); line-height: 1.7;
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 120px 48px;
+    background: var(--surface);
+  }
+  .about-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .about-text .section-eyebrow { text-align: left; }
+  .about-text .section-title { text-align: left; margin-bottom: 24px; }
+  .about-body {
+    font-size: 15px; color: var(--muted); line-height: 1.85;
+    margin-bottom: 32px;
+  }
+  .about-signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-style: italic; color: var(--gold);
+  }
+  .about-visual {
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .stat-block {
+    border-left: 2px solid var(--gold);
+    padding-left: 24px;
+  }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300; color: var(--white); line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); margin-top: 4px;
+  }
+
+  /* PROMISE */
+  .promise {
+    padding: 120px 48px;
+    text-align: center; max-width: 800px; margin: 0 auto;
+  }
+  .promise-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 4vw, 42px); font-weight: 300; font-style: italic;
+    line-height: 1.4; color: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 64px 0;
+  }
+  .promise-quote em { color: var(--gold); font-style: normal; }
+
+  /* CONTACT */
+  .contact {
+    padding: 120px 48px;
+    background: var(--surface);
+  }
+  .contact-inner {
+    max-width: 600px; margin: 0 auto; text-align: center;
+  }
+  .contact-inner .section-title { margin-bottom: 16px; }
+  .contact-sub {
+    font-size: 15px; color: var(--muted); margin-bottom: 48px; line-height: 1.7;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-field {
+    display: flex; flex-direction: column; gap: 8px; text-align: left;
+  }
+  .form-field label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--white); font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 300;
+    padding: 14px 18px; outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus { border-color: var(--gold); }
+  .form-field textarea { resize: vertical; min-height: 100px; }
+  .form-field select option { background: var(--card); }
+  .form-success {
+    display: none;
+    padding: 24px; background: rgba(201,169,110,0.1);
+    border: 1px solid var(--gold); color: var(--gold);
+    font-size: 14px; line-height: 1.6; text-align: center;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; color: var(--white);
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-copy {
+    font-size: 12px; color: var(--muted);
+  }
+  .footer-contact {
+    font-size: 13px; color: var(--muted); text-align: right;
+  }
+  .footer-contact a { color: var(--gold); text-decoration: none; }
+
+  /* POPUP */
+  .popup-overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0.85);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .popup-overlay.active { opacity: 1; pointer-events: all; }
+  .popup {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    max-width: 480px; width: 100%;
+    padding: 56px 48px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+  }
+  .popup-overlay.active .popup { transform: translateY(0); }
+  .popup-close {
+    position: absolute; top: 20px; right: 24px;
+    background: none; border: none; color: var(--muted);
+    font-size: 20px; cursor: pointer; line-height: 1;
+    transition: color 0.2s;
+  }
+  .popup-close:hover { color: var(--white); }
+  .popup-eyebrow {
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+  }
+  .popup-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 300; line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .popup-sub {
+    font-size: 14px; color: var(--muted); line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .popup-form { display: flex; flex-direction: column; gap: 14px; }
+  .popup-form input {
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--white); font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 300;
+    padding: 14px 18px; outline: none; width: 100%;
+    transition: border-color 0.2s;
+  }
+  .popup-form input:focus { border-color: var(--gold); }
+  .popup-form input::placeholder { color: var(--muted); }
+  .popup-disclaimer {
+    font-size: 11px; color: var(--muted); line-height: 1.5; margin-top: 4px;
+  }
+  .popup-success {
+    display: none; text-align: center; padding: 16px 0;
+  }
+  .popup-success p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; color: var(--gold); margin-bottom: 8px;
+  }
+  .popup-success span { font-size: 13px; color: var(--muted); }
+
+  /* ANIMATIONS */
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .services { padding: 80px 24px; }
+    .about { padding: 80px 24px; }
+    .about-inner { grid-template-columns: 1fr; gap: 48px; }
+    .promise { padding: 80px 24px; }
+    .contact { padding: 80px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-contact { text-align: center; }
+    .popup { padding: 40px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Selah<span>.</span></a>
+  <div style="display:flex;align-items:center;gap:24px;">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+      <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+    </div>
+    <a href="#contact" class="nav-cta" data-en="Request a Quote" data-es="Solicitar Cotización">Request a Quote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow" data-en="Premium Residential Cleaning · Lubbock, Texas" data-es="Limpieza Residencial Premium · Lubbock, Texas">Premium Residential Cleaning · Lubbock, Texas</p>
+  <h1 class="hero-word"><em data-en="Immaculate." data-es="Impecable.">Immaculate.</em></h1>
+  <p class="hero-sub" data-en="Your home deserves more than clean. It deserves a standard — maintained with precision, discretion, and care." data-es="Tu hogar merece más que limpieza. Merece un estándar — mantenido con precisión, discreción y cuidado.">Your home deserves more than clean. It deserves a standard — maintained with precision, discretion, and care.</p>
+  <div class="hero-cta">
+    <button class="btn-gold" onclick="openPopup()" data-en="Claim Your First-Clean Offer" data-es="Reclama Tu Oferta de Primera Limpieza">Claim Your First-Clean Offer</button>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <p class="section-eyebrow" data-en="What We Offer" data-es="Lo Que Ofrecemos">What We Offer</p>
+  <h2 class="section-title" data-en="Every room.<br>Every detail." data-es="Cada cuarto.<br>Cada detalle.">Every room.<br>Every detail.</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">✦</span>
+      <h3 class="service-name" data-en="Deep Clean" data-es="Limpieza Profunda">Deep Clean</h3>
+      <p class="service-desc" data-en="A thorough, top-to-bottom service for homes that demand the highest standard. Perfect for first-time clients and seasonal resets." data-es="Un servicio completo de arriba a abajo para hogares que exigen el más alto estándar. Perfecto para nuevos clientes y resets de temporada.">A thorough, top-to-bottom service for homes that demand the highest standard. Perfect for first-time clients and seasonal resets.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">◈</span>
+      <h3 class="service-name" data-en="Recurring Maintenance" data-es="Mantenimiento Recurrente">Recurring Maintenance</h3>
+      <p class="service-desc" data-en="Weekly, bi-weekly, or monthly visits tailored to your schedule. Consistency you can feel the moment you walk through the door." data-es="Visitas semanales, quincenales o mensuales adaptadas a tu horario. Consistencia que se siente al cruzar la puerta.">Weekly, bi-weekly, or monthly visits tailored to your schedule. Consistency you can feel the moment you walk through the door.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">◇</span>
+      <h3 class="service-name" data-en="Move In / Move Out" data-es="Mudanza / Entrega">Move In / Move Out</h3>
+      <p class="service-desc" data-en="Meticulous preparation for transitions. We leave no corner overlooked — so you start or close the chapter right." data-es="Preparación meticulosa para transiciones. No dejamos ningún rincón sin atender — para que comiences o cierres el capítulo de la mejor manera.">Meticulous preparation for transitions. We leave no corner overlooked — so you start or close the chapter right.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">⬡</span>
+      <h3 class="service-name" data-en="Post-Event" data-es="Post-Evento">Post-Event</h3>
+      <p class="service-desc" data-en="After the gathering, before the morning. Discreet, efficient restoration of your space to its natural order." data-es="Después de la reunión, antes del amanecer. Restauración discreta y eficiente de tu espacio a su orden natural.">After the gathering, before the morning. Discreet, efficient restoration of your space to its natural order.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <p class="section-eyebrow" data-en="Our Story" data-es="Nuestra Historia">Our Story</p>
+      <h2 class="section-title" data-en="Care in<br>every detail." data-es="Cuidado en<br>cada detalle.">Care in<br>every detail.</h2>
+      <p class="about-body" data-en="Selah Spaces was founded on a simple belief: the places we rest should restore us. Led by Yesenia Godoy, our team brings precision, professionalism, and genuine pride to every home we serve in the Lubbock area." data-es="Selah Spaces fue fundado en una creencia simple: los lugares donde descansamos deben restaurarnos. Liderado por Yesenia Godoy, nuestro equipo aporta precisión, profesionalismo y orgullo genuino a cada hogar que servimos en el área de Lubbock.">Selah Spaces was founded on a simple belief: the places we rest should restore us. Led by Yesenia Godoy, our team brings precision, professionalism, and genuine pride to every home we serve in the Lubbock area.</p>
+      <p class="about-body" data-en="We don't cut corners. We clean them." data-es="No cortamos esquinas. Las limpiamos.">We don't cut corners. We clean them.</p>
+      <p class="about-signature">— Yesenia</p>
+    </div>
+    <div class="about-visual">
+      <div class="stat-block">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Satisfaction Guaranteed</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">Insured</div>
+        <div class="stat-label">Fully Licensed & Covered</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">Local</div>
+        <div class="stat-label">Lubbock, TX Based Team</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE -->
+<section style="padding: 0 48px;">
+  <div class="promise">
+    <p class="promise-quote" data-en="&ldquo;We treat your home the way you would — if you had the time to do it <em>perfectly.</em>&rdquo;" data-es="&ldquo;Tratamos tu hogar como tú lo harías — si tuvieras el tiempo de hacerlo <em>perfectamente.</em>&rdquo;">"We treat your home the way you would — if you had the time to do it <em>perfectly.</em>"</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <p class="section-eyebrow" data-en="Get in Touch" data-es="Contáctanos">Get in Touch</p>
+    <h2 class="section-title" data-en="Request a Quote" data-es="Solicitar Cotización">Request a Quote</h2>
+    <p class="contact-sub" data-en="Tell us about your home and we'll be in touch within a few hours to discuss your needs and schedule." data-es="Cuéntanos sobre tu hogar y nos comunicaremos en pocas horas para hablar sobre tus necesidades y horario.">Tell us about your home and we'll be in touch within a few hours to discuss your needs and schedule.</p>
+    <form class="contact-form" onsubmit="submitContactForm(event)">
+      <div class="form-row">
+        <div class="form-field">
+          <label data-en="First Name" data-es="Nombre">First Name</label>
+          <input type="text" name="first_name" placeholder="Jane" required>
+        </div>
+        <div class="form-field">
+          <label data-en="Last Name" data-es="Apellido">Last Name</label>
+          <input type="text" name="last_name" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label data-en="Phone" data-es="Teléfono">Phone</label>
+          <input type="tel" name="phone" placeholder="(806) 555-0100" required>
+        </div>
+        <div class="form-field">
+          <label data-en="Email" data-es="Correo">Email</label>
+          <input type="email" name="email" placeholder="jane@email.com">
+        </div>
+      </div>
+      <div class="form-field">
+        <label data-en="Service Needed" data-es="Servicio Requerido">Service Needed</label>
+        <select name="service">
+          <option value="" data-en="Select a service" data-es="Selecciona un servicio">Select a service</option>
+          <option value="deep_clean" data-en="Deep Clean" data-es="Limpieza Profunda">Deep Clean</option>
+          <option value="recurring" data-en="Recurring Maintenance" data-es="Mantenimiento Recurrente">Recurring Maintenance</option>
+          <option value="move" data-en="Move In / Move Out" data-es="Mudanza / Entrega">Move In / Move Out</option>
+          <option value="post_event" data-en="Post-Event Clean" data-es="Limpieza Post-Evento">Post-Event Clean</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label data-en="Message (optional)" data-es="Mensaje (opcional)">Message (optional)</label>
+        <textarea name="message" data-placeholder-en="Tell us about your home — square footage, number of rooms, any special requests..." data-placeholder-es="Cuéntanos sobre tu hogar — metros cuadrados, número de habitaciones, solicitudes especiales..." placeholder="Tell us about your home — square footage, number of rooms, any special requests..."></textarea>
+      </div>
+      <button type="submit" class="btn-gold" style="margin-top:8px;" data-en="Send Request" data-es="Enviar Solicitud">Send Request</button>
+      <div class="form-success" id="contact-success" data-en="Thank you. We'll reach out within a few hours to confirm your quote and scheduling." data-es="Gracias. Nos comunicaremos en pocas horas para confirmar tu cotización y horario.">
+        Thank you. We'll reach out within a few hours to confirm your quote and scheduling.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Selah<span>.</span></div>
+  <div class="footer-copy">© 2026 Selah Spaces. All rights reserved.</div>
+  <div class="footer-contact">
+    Lubbock, TX · <a href="tel:8066300278">(806) 630-0278</a>
+  </div>
+</footer>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popup-overlay" onclick="handleOverlayClick(event)">
+  <div class="popup">
+    <button class="popup-close" onclick="closePopup()">✕</button>
+    <p class="popup-eyebrow" data-en="Exclusive Offer" data-es="Oferta Exclusiva">Exclusive Offer</p>
+    <h2 class="popup-title" data-en="15% Off Your First Clean" data-es="15% de Descuento en Tu Primera Limpieza">15% Off Your First Clean</h2>
+    <p class="popup-sub" data-en="Leave your details and we'll reach out to schedule your first service at a discounted rate. No commitment required." data-es="Déjanos tus datos y te contactaremos para agendar tu primer servicio con descuento. Sin compromiso.">Leave your details and we'll reach out to schedule your first service at a discounted rate. No commitment required.</p>
+    <div class="popup-success" id="popup-success">
+      <p data-en="You're on the list." data-es="¡Ya estás en la lista!">You're on the list.</p>
+      <span data-en="We'll text you within the hour to get you scheduled." data-es="Te escribiremos en menos de una hora para agendar tu cita.">We'll text you within the hour to get you scheduled.</span>
+    </div>
+    <form class="popup-form" id="popup-form" onsubmit="submitPopup(event)">
+      <input type="text" id="popup-name" data-placeholder-en="Your Name" data-placeholder-es="Tu Nombre" placeholder="Your Name" required>
+      <input type="tel" id="popup-phone" data-placeholder-en="Phone Number" data-placeholder-es="Número de Teléfono" placeholder="Phone Number" required>
+      <input type="email" id="popup-email" data-placeholder-en="Email Address" data-placeholder-es="Correo Electrónico" placeholder="Email Address">
+      <button type="submit" class="btn-gold" data-en="Claim My 15% Off" data-es="Reclamar Mi 15% de Descuento">Claim My 15% Off</button>
+      <p class="popup-disclaimer" data-en="We respect your privacy. No spam — just your cleaning confirmation." data-es="Respetamos tu privacidad. Sin spam — solo la confirmación de tu limpieza.">We respect your privacy. No spam — just your cleaning confirmation.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ── LANGUAGE SWITCHER ──
+  function setLang(lang) {
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+
+    document.querySelectorAll('[data-en]').forEach(el => {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return;
+      const val = el.getAttribute('data-' + lang);
+      if (val) el.innerHTML = val;
+    });
+
+    // Placeholders
+    document.querySelectorAll('[data-placeholder-en]').forEach(el => {
+      el.placeholder = el.getAttribute('data-placeholder-' + lang) || el.placeholder;
+    });
+  }
+
+  // ── POPUP TIMING ──
+  let popupShown = false;
+
+  function openPopup() {
+    if (popupShown) return;
+    document.getElementById('popup-overlay').classList.add('active');
+    popupShown = true;
+  }
+
+  function closePopup() {
+    document.getElementById('popup-overlay').classList.remove('active');
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('popup-overlay')) closePopup();
+  }
+
+  // Auto-trigger after 8 seconds
+  setTimeout(() => { if (!popupShown) openPopup(); }, 8000);
+
+  // Exit-intent trigger
+  document.addEventListener('mouseleave', (e) => {
+    if (e.clientY <= 0 && !popupShown) openPopup();
+  });
+
+  // ── POPUP SUBMIT → HERMES AGENT ──
+  async function submitPopup(e) {
+    e.preventDefault();
+    const name = document.getElementById('popup-name').value;
+    const phone = document.getElementById('popup-phone').value;
+    const email = document.getElementById('popup-email').value;
+
+    const payload = {
+      source: 'website_popup',
+      offer: '15_percent_first_clean',
+      name, phone, email,
+      timestamp: new Date().toISOString(),
+      page: window.location.href
+    };
+
+    // POST to Hermes webhook — replace with your actual endpoint
+    try {
+      await fetch('YOUR_HERMES_WEBHOOK_URL/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch(err) {
+      // Fail silently — lead is captured visually, can log later
+      console.error('Webhook error:', err);
+    }
+
+    document.getElementById('popup-form').style.display = 'none';
+    document.getElementById('popup-success').style.display = 'block';
+    setTimeout(closePopup, 4000);
+  }
+
+  // ── CONTACT FORM SUBMIT ──
+  async function submitContactForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = Object.fromEntries(new FormData(form));
+
+    const payload = {
+      source: 'website_contact_form',
+      ...data,
+      timestamp: new Date().toISOString()
+    };
+
+    try {
+      await fetch('YOUR_HERMES_WEBHOOK_URL/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch(err) {
+      console.error('Webhook error:', err);
+    }
+
+    form.style.display = 'none';
+    document.getElementById('contact-success').style.display = 'block';
+  }
+</script>
+</body>
+</html>
