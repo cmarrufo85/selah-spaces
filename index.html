@@ -15,6 +15,17 @@
 <meta property="og:title" content="Selah Spaces — Premium Residential Cleaning in Lubbock, TX">
 <meta property="og:description" content="Book a free home assessment. Yesenia evaluates your home and builds a custom cleaning plan — no pressure, no commitment.">
 <meta property="og:url" content="https://selahspaces.io/">
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta property="og:image" content="https://selahspaces.io/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Selah Spaces — premium residential cleaning in Lubbock, Texas" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://selahspaces.io/og-image.jpg" />
 <meta property="og:site_name" content="Selah Spaces">
 
 <!-- Twitter Card -->
@@ -27,6 +38,8 @@
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+    "logo": "https://selahspaces.io/icon-512.png",
+    "image": "https://selahspaces.io/og-image.jpg",
   "name": "Selah Spaces",
   "description": "Premium residential cleaning services in Lubbock, Texas. Deep cleans, recurring maintenance, move-in/out, and post-event cleaning.",
   "url": "https://selahspaces.io",
@@ -583,6 +596,40 @@ footer {
   body { padding-bottom: 60px; }
   .popup { padding: 44px 28px; }
 }
+
+/* ---------- gallery carousel ---------- */
+.gallery{padding:120px 0;background:var(--black);border-top:1px solid var(--border-subtle);}
+.gallery-inner{max-width:1200px;margin:0 auto;padding:0 32px;}
+.gallery-header{margin-bottom:56px;}
+.gal-stage{position:relative;overflow:hidden;border:1px solid var(--border);border-radius:2px;background:var(--surface);}
+.gal-track{display:flex;transition:transform .9s cubic-bezier(.22,.61,.36,1);}
+.gal-slide{flex:0 0 100%;position:relative;}
+.gal-slide img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;}
+.gal-veil{position:absolute;inset:auto 0 0 0;padding:64px 40px 32px;
+  background:linear-gradient(to top,rgba(10,10,10,.92) 0%,rgba(10,10,10,.6) 45%,transparent 100%);}
+.gal-room{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--white);line-height:1.1;}
+.gal-note{font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:300;color:var(--gold-light);
+  letter-spacing:.12em;text-transform:uppercase;margin-top:10px;}
+.gal-controls{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:28px;}
+.gal-dots{display:flex;gap:8px;}
+.gal-dot{width:32px;height:2px;padding:0;border:0;background:var(--border);cursor:pointer;transition:background .3s ease;}
+.gal-dot[aria-current="true"]{background:var(--gold);}
+.gal-dot:hover{background:var(--gold-light);}
+.gal-arrows{display:flex;gap:10px;}
+.gal-arrow{width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  background:transparent;border:1px solid var(--border);color:var(--white);cursor:pointer;
+  transition:border-color .25s ease,background .25s ease;}
+.gal-arrow:hover{border-color:var(--gold);background:var(--card);}
+.gal-arrow svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.5;fill:none;}
+@media(max-width:768px){
+  .gallery{padding:80px 0;}
+  .gallery-inner{padding:0 20px;}
+  .gal-slide img{aspect-ratio:4/3;}
+  .gal-veil{padding:48px 24px 24px;}
+  .gal-room{font-size:1.5rem;}
+  .gal-controls{flex-direction:column-reverse;align-items:flex-start;gap:16px;}
+}
+@media(prefers-reduced-motion:reduce){.gal-track{transition:none;}}
 </style>
 </head>
 <body>
@@ -690,6 +737,88 @@ footer {
 </section>
 
 <!-- TESTIMONIALS -->
+<section class="gallery" id="gallery">
+  <div class="gallery-inner">
+    <div class="gallery-header">
+      <p class="section-eyebrow" style="text-align:center" data-en="The Result" data-es="El Resultado">The Result</p>
+      <h2 class="section-title" style="text-align:center" data-en="This is what<br>coming home feels like." data-es="Así se siente<br>llegar a casa.">This is what<br>coming home feels like.</h2>
+    </div>
+
+    <div class="gal-stage" id="gal" role="region" aria-roledescription="carousel" aria-label="Homes cleaned by Selah Spaces">
+      <ul class="gal-track" id="gal-track" style="list-style:none;margin:0;padding:0;">
+        <li class="gal-slide" role="group" aria-roledescription="slide" aria-label="1 of 5">
+          <picture>
+            <source type="image/webp" srcset="images/living-room-800.webp 800w, images/living-room-1400.webp 1400w, images/living-room-2000.webp 2000w" sizes="(max-width:768px) 100vw, 1200px" />
+            <img src="images/living-room-1400.jpg" srcset="images/living-room-800.jpg 800w, images/living-room-1400.jpg 1400w, images/living-room-2000.jpg 2000w" sizes="(max-width:768px) 100vw, 1200px"
+                 alt="Living room with sectional sofa and rug, cleaned and styled" width="1400" height="788" decoding="async" />
+          </picture>
+          <div class="gal-veil">
+            <p class="gal-room" data-en="A living room that invites you to sit down." data-es="Una sala que te invita a sentarte.">A living room that invites you to sit down.</p>
+            <p class="gal-note" data-en="Recurring clean · Lubbock" data-es="Limpieza recurrente · Lubbock">Recurring clean · Lubbock</p>
+          </div>
+        </li>
+        <li class="gal-slide" role="group" aria-roledescription="slide" aria-label="2 of 5">
+          <picture>
+            <source type="image/webp" srcset="images/bedroom-main-800.webp 800w, images/bedroom-main-1400.webp 1400w, images/bedroom-main-2000.webp 2000w" sizes="(max-width:768px) 100vw, 1200px" />
+            <img src="images/bedroom-main-1400.jpg" srcset="images/bedroom-main-800.jpg 800w, images/bedroom-main-1400.jpg 1400w, images/bedroom-main-2000.jpg 2000w" sizes="(max-width:768px) 100vw, 1200px"
+                 alt="Primary bedroom with a freshly made bed and clean floors" width="1400" height="788" loading="lazy" decoding="async" />
+          </picture>
+          <div class="gal-veil">
+            <p class="gal-room" data-en="The bed made the way you never quite make it." data-es="La cama tendida como nunca logras hacerla.">The bed made the way you never quite make it.</p>
+            <p class="gal-note" data-en="Deep clean · Primary bedroom" data-es="Limpieza profunda · Recámara principal">Deep clean · Primary bedroom</p>
+          </div>
+        </li>
+        <li class="gal-slide" role="group" aria-roledescription="slide" aria-label="3 of 5">
+          <picture>
+            <source type="image/webp" srcset="images/kitchen-800.webp 800w, images/kitchen-1400.webp 1400w, images/kitchen-2000.webp 2000w" sizes="(max-width:768px) 100vw, 1200px" />
+            <img src="images/kitchen-1400.jpg" srcset="images/kitchen-800.jpg 800w, images/kitchen-1400.jpg 1400w, images/kitchen-2000.jpg 2000w" sizes="(max-width:768px) 100vw, 1200px"
+                 alt="Modern kitchen with stainless appliances, spotless counters" width="1400" height="788" loading="lazy" decoding="async" />
+          </picture>
+          <div class="gal-veil">
+            <p class="gal-room" data-en="A kitchen with nothing on the counter but light." data-es="Una cocina sin nada en la barra más que luz.">A kitchen with nothing on the counter but light.</p>
+            <p class="gal-note" data-en="Deep clean · Kitchen" data-es="Limpieza profunda · Cocina">Deep clean · Kitchen</p>
+          </div>
+        </li>
+        <li class="gal-slide" role="group" aria-roledescription="slide" aria-label="4 of 5">
+          <picture>
+            <source type="image/webp" srcset="images/bedroom-guest-800.webp 800w, images/bedroom-guest-1400.webp 1400w, images/bedroom-guest-2000.webp 2000w" sizes="(max-width:768px) 100vw, 1200px" />
+            <img src="images/bedroom-guest-1400.jpg" srcset="images/bedroom-guest-800.jpg 800w, images/bedroom-guest-1400.jpg 1400w, images/bedroom-guest-2000.jpg 2000w" sizes="(max-width:768px) 100vw, 1200px"
+                 alt="Guest bedroom with a made bed and clear surfaces" width="1400" height="788" loading="lazy" decoding="async" />
+          </picture>
+          <div class="gal-veil">
+            <p class="gal-room" data-en="The guest room, ready before the guest calls." data-es="El cuarto de huéspedes, listo antes de la llamada.">The guest room, ready before the guest calls.</p>
+            <p class="gal-note" data-en="Recurring clean · Guest room" data-es="Limpieza recurrente · Cuarto de huéspedes">Recurring clean · Guest room</p>
+          </div>
+        </li>
+        <li class="gal-slide" role="group" aria-roledescription="slide" aria-label="5 of 5">
+          <picture>
+            <source type="image/webp" srcset="images/bathroom-800.webp 800w, images/bathroom-1400.webp 1400w, images/bathroom-2000.webp 2000w" sizes="(max-width:768px) 100vw, 1200px" />
+            <img src="images/bathroom-1400.jpg" srcset="images/bathroom-800.jpg 800w, images/bathroom-1400.jpg 1400w, images/bathroom-2000.jpg 2000w" sizes="(max-width:768px) 100vw, 1200px"
+                 alt="Clean bathroom with polished vanity and fixtures" width="1400" height="788" loading="lazy" decoding="async" />
+          </picture>
+          <div class="gal-veil">
+            <p class="gal-room" data-en="A bathroom that feels like a hotel you'd go back to." data-es="Un baño que se siente como un hotel al que volverías.">A bathroom that feels like a hotel you'd go back to.</p>
+            <p class="gal-note" data-en="Deep clean · Bathroom" data-es="Limpieza profunda · Baño">Deep clean · Bathroom</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="gal-controls">
+      <div class="gal-dots" id="gal-dots"></div>
+      <div class="gal-arrows">
+        <button class="gal-arrow" id="gal-prev" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <button class="gal-arrow" id="gal-next" aria-label="Next photo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+    <p id="gal-live" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);"></p>
+  </div>
+</section>
+
 <section class="testimonials">
   <div class="testimonials-header">
     <p class="section-eyebrow" data-en="Client Stories" data-es="Testimonios">Client Stories</p>
@@ -1031,6 +1160,63 @@ footer {
     document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   }
+</script>
+
+<script>
+/* Gallery carousel: auto-advances, yields the moment the visitor takes over. */
+(function(){
+  var track=document.getElementById('gal-track');
+  if(!track) return;
+  var slides=[].slice.call(track.children),
+      dotsEl=document.getElementById('gal-dots'),
+      live=document.getElementById('gal-live'),
+      stage=document.getElementById('gal'),
+      calm=window.matchMedia('(prefers-reduced-motion: reduce)'),
+      DWELL=5500, i=0, timer=null, held=false;
+
+  slides.forEach(function(_,n){
+    var d=document.createElement('button');
+    d.className='gal-dot'; d.setAttribute('aria-label','Photo '+(n+1));
+    d.addEventListener('click',function(){ go(n); hold(); });
+    dotsEl.appendChild(d);
+  });
+  var dots=[].slice.call(dotsEl.children);
+
+  function go(n){
+    i=(n+slides.length)%slides.length;
+    track.style.transform='translateX(-'+(i*100)+'%)';
+    dots.forEach(function(d,k){ d.setAttribute('aria-current', String(k===i)); });
+    slides.forEach(function(s,k){ s.setAttribute('aria-hidden', String(k!==i)); });
+    live.textContent='Photo '+(i+1)+' of '+slides.length;
+  }
+  function play(){ stop(); if(calm.matches||held||document.hidden) return; timer=setInterval(function(){ go(i+1); },DWELL); }
+  function stop(){ clearInterval(timer); timer=null; }
+  function hold(){ held=true; stop(); }
+
+  document.getElementById('gal-prev').addEventListener('click',function(){ go(i-1); hold(); });
+  document.getElementById('gal-next').addEventListener('click',function(){ go(i+1); hold(); });
+  stage.addEventListener('mouseenter',stop);
+  stage.addEventListener('mouseleave',play);
+  document.addEventListener('visibilitychange',function(){ document.hidden?stop():play(); });
+
+  /* swipe */
+  var x0=null;
+  stage.addEventListener('touchstart',function(e){ x0=e.touches[0].clientX; },{passive:true});
+  stage.addEventListener('touchend',function(e){
+    if(x0===null) return;
+    var dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>40){ go(dx<0?i+1:i-1); hold(); }
+    x0=null;
+  },{passive:true});
+
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(en,obs){
+      en.forEach(function(e){ if(e.isIntersecting){ play(); obs.disconnect(); } });
+    },{threshold:0.3}).observe(stage);
+  } else { play(); }
+
+  go(0);
+})();
 </script>
 </body>
 </html>
