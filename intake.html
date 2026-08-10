@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Welcome to the Selah Family — Client Intake</title>
+<link rel="icon" href="/favicon.ico">
+<style>
+  :root{
+    --warm-white:#F8F5EF; --linen:#EAE0D2; --taupe:#B8A898;
+    --driftwood:#7A6A60; --espresso:#3C3028; --sage:#7A8B6F;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--warm-white);color:var(--espresso);
+    font-family:Georgia,'Times New Roman',serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:640px;margin:0 auto;padding:40px 20px 80px}
+  .logo{font-size:28px;letter-spacing:.5px}
+  .logo span{color:var(--driftwood)}
+  .lang{float:right;font-size:14px}
+  .lang button{background:none;border:1px solid var(--taupe);border-radius:6px;
+    padding:4px 10px;cursor:pointer;color:var(--driftwood);font-family:inherit}
+  .lang button.active{background:var(--espresso);color:var(--warm-white);border-color:var(--espresso)}
+  h1{font-weight:500;font-size:26px;margin:28px 0 6px}
+  .sub{color:var(--driftwood);margin-bottom:32px}
+  fieldset{border:1px solid var(--taupe);border-radius:14px;background:#fff;
+    padding:22px;margin-bottom:22px}
+  legend{padding:0 10px;color:var(--driftwood);font-size:15px;letter-spacing:.5px;text-transform:uppercase}
+  label{display:block;font-size:15px;margin:14px 0 4px;color:var(--espresso)}
+  .req::after{content:" *";color:#B5654D}
+  input[type=text],input[type=tel],input[type=email],select,textarea{
+    width:100%;padding:11px 12px;border:1px solid var(--taupe);border-radius:9px;
+    background:var(--warm-white);font-family:inherit;font-size:16px;color:var(--espresso)}
+  textarea{min-height:70px;resize:vertical}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--driftwood);outline-offset:1px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  .check{display:flex;align-items:center;gap:10px;margin:12px 0 0;font-size:15px}
+  .check input{width:18px;height:18px;accent-color:var(--driftwood)}
+  .fine{font-size:13px;color:var(--taupe);margin-top:4px}
+  .btn{width:100%;background:var(--espresso);color:var(--warm-white);border:none;
+    border-radius:10px;padding:16px;font-size:17px;font-family:inherit;cursor:pointer;margin-top:8px}
+  .btn:hover{background:#4a3c32}
+  .btn:disabled{opacity:.6;cursor:wait}
+  .success{display:none;text-align:center;background:#fff;border:1px solid var(--sage);
+    border-radius:14px;padding:48px 28px}
+  .success h2{color:var(--sage);font-weight:500;margin-bottom:10px}
+  .err-banner{display:none;background:#fdf0ec;border:1px solid #B5654D;border-radius:10px;
+    padding:12px 16px;margin-bottom:16px;font-size:15px}
+  @media(max-width:520px){.row,.row3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lang">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-es" onclick="setLang('es')">ES</button>
+  </div>
+  <div class="logo">Selah<span>.</span></div>
+
+  <h1 data-en="Welcome to the Selah family" data-es="Bienvenido a la familia Selah">Welcome to the Selah family</h1>
+  <p class="sub" data-en="Tell us about your home so every visit is exactly right. Takes about 3 minutes — only name and phone are required, share whatever you're comfortable with."
+     data-es="Cuéntanos sobre tu hogar para que cada visita sea perfecta. Toma unos 3 minutos — solo el nombre y teléfono son obligatorios.">
+     Tell us about your home so every visit is exactly right. Takes about 3 minutes — only name and phone are required, share whatever you're comfortable with.</p>
+
+  <div class="err-banner" id="err" data-en="Something went wrong — please try again, or just text us at (806) 630-0278."
+       data-es="Algo salió mal — intenta de nuevo, o envíanos un texto al (806) 630-0278.">
+       Something went wrong — please try again, or just text us at (806) 630-0278.</div>
+
+  <div class="success" id="success">
+    <h2 data-en="Thank you — we've got it!" data-es="¡Gracias — lo recibimos!">Thank you — we've got it!</h2>
+    <p data-en="Your home profile is saved. We'll use it to make every visit feel effortless for you."
+       data-es="Tu perfil está guardado. Lo usaremos para que cada visita sea perfecta.">
+       Your home profile is saved. We'll use it to make every visit feel effortless for you.</p>
+  </div>
+
+  <form id="intake" onsubmit="submitIntake(event)">
+    <fieldset>
+      <legend data-en="About you" data-es="Sobre ti">About you</legend>
+      <label class="req" data-en="Full name" data-es="Nombre completo">Full name</label>
+      <input type="text" name="name" required maxlength="120">
+      <label class="req" data-en="Phone" data-es="Teléfono">Phone</label>
+      <input type="tel" name="phone" required maxlength="20">
+      <label data-en="Email" data-es="Correo electrónico">Email</label>
+      <input type="email" name="email" maxlength="200">
+      <label data-en="Birthday (month/day — we like to celebrate our clients)" data-es="Cumpleaños (mes/día — nos gusta celebrar a nuestros clientes)">Birthday (month/day — we like to celebrate our clients)</label>
+      <input type="text" name="birthday" placeholder="e.g. 06/14" maxlength="20">
+    </fieldset>
+
+    <fieldset>
+      <legend data-en="Your home" data-es="Tu hogar">Your home</legend>
+      <label data-en="Street address" data-es="Dirección">Street address</label>
+      <input type="text" name="address" maxlength="200">
+      <div class="row">
+        <div>
+          <label data-en="ZIP" data-es="Código postal">ZIP</label>
+          <input type="text" name="zip" maxlength="10">
+        </div>
+        <div>
+          <label data-en="Home type" data-es="Tipo de hogar">Home type</label>
+          <select name="home_type">
+            <option value=""></option>
+            <option value="house" data-en="House" data-es="Casa">House</option>
+            <option value="apartment" data-en="Apartment" data-es="Apartamento">Apartment</option>
+            <option value="condo" data-en="Condo / Townhome" data-es="Condominio">Condo / Townhome</option>
+            <option value="other" data-en="Other" data-es="Otro">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="row3">
+        <div>
+          <label data-en="Bedrooms" data-es="Recámaras">Bedrooms</label>
+          <input type="text" name="bedrooms" inputmode="numeric" maxlength="2">
+        </div>
+        <div>
+          <label data-en="Bathrooms" data-es="Baños">Bathrooms</label>
+          <input type="text" name="bathrooms" inputmode="numeric" maxlength="2">
+        </div>
+        <div>
+          <label data-en="Approx. sq ft" data-es="Pies cuadrados aprox.">Approx. sq ft</label>
+          <input type="text" name="square_footage" inputmode="numeric" maxlength="6">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend data-en="Getting in &amp; parking" data-es="Acceso y estacionamiento">Getting in &amp; parking</legend>
+      <label data-en="How should we get in?" data-es="¿Cómo entramos?">How should we get in?</label>
+      <select name="access_method">
+        <option value=""></option>
+        <option value="home" data-en="Someone will be home" data-es="Alguien estará en casa">Someone will be home</option>
+        <option value="lockbox" data-en="Lockbox / hidden key" data-es="Caja de seguridad / llave escondida">Lockbox / hidden key</option>
+        <option value="garage_code" data-en="Garage or door code" data-es="Código de garaje o puerta">Garage or door code</option>
+        <option value="other" data-en="Other (tell us below)" data-es="Otro (cuéntanos abajo)">Other (tell us below)</option>
+      </select>
+      <label data-en="Gate / door code (only if we'll need it)" data-es="Código de puerta (solo si lo necesitamos)">Gate / door code (only if we'll need it)</label>
+      <input type="text" name="gate_code" maxlength="50">
+      <p class="fine" data-en="Stored securely — only Yesenia and Carlos can see this." data-es="Guardado de forma segura — solo Yesenia y Carlos pueden verlo.">Stored securely — only Yesenia and Carlos can see this.</p>
+      <label data-en="Parking notes" data-es="Notas de estacionamiento">Parking notes</label>
+      <input type="text" name="parking" maxlength="200">
+    </fieldset>
+
+    <fieldset>
+      <legend data-en="Your household" data-es="Tu familia">Your household</legend>
+      <div class="check"><input type="checkbox" name="pets" value="true" id="pets">
+        <label for="pets" style="margin:0" data-en="We have pets" data-es="Tenemos mascotas">We have pets</label></div>
+      <div class="row">
+        <div>
+          <label data-en="Pet type(s)" data-es="Tipo de mascota(s)">Pet type(s)</label>
+          <input type="text" name="pet_type" placeholder="dog, cat…" maxlength="100">
+        </div>
+        <div>
+          <label data-en="Their names 🐾" data-es="Sus nombres 🐾">Their names 🐾</label>
+          <input type="text" name="pet_names" maxlength="150">
+        </div>
+      </div>
+      <div class="check"><input type="checkbox" name="has_children" value="true" id="kids">
+        <label for="kids" style="margin:0" data-en="Children at home" data-es="Niños en casa">Children at home</label></div>
+    </fieldset>
+
+    <fieldset>
+      <legend data-en="How you like it done" data-es="Cómo te gusta">How you like it done</legend>
+      <div class="row">
+        <div>
+          <label data-en="Preferred day" data-es="Día preferido">Preferred day</label>
+          <input type="text" name="preferred_day" placeholder="e.g. Fridays" maxlength="50">
+        </div>
+        <div>
+          <label data-en="Preferred time" data-es="Hora preferida">Preferred time</label>
+          <input type="text" name="preferred_time" placeholder="e.g. mornings" maxlength="50">
+        </div>
+      </div>
+      <div class="check"><input type="checkbox" name="eco_friendly" value="true" id="eco">
+        <label for="eco" style="margin:0" data-en="Prefer eco-friendly products" data-es="Prefiero productos ecológicos">Prefer eco-friendly products</label></div>
+      <div class="check"><input type="checkbox" name="unscented_only" value="true" id="unscented">
+        <label for="unscented" style="margin:0" data-en="Unscented products only" data-es="Solo productos sin fragancia">Unscented products only</label></div>
+      <label data-en="Allergies or sensitivities we should know about" data-es="Alergias o sensibilidades">Allergies or sensitivities we should know about</label>
+      <input type="text" name="allergies" maxlength="300">
+      <label data-en="Rooms or areas to skip" data-es="Cuartos o áreas que no debemos tocar">Rooms or areas to skip</label>
+      <input type="text" name="areas_to_avoid" maxlength="300">
+      <label data-en="Fragile or precious items we should treat with extra care" data-es="Artículos frágiles o preciados">Fragile or precious items we should treat with extra care</label>
+      <textarea name="fragile_items_notes" maxlength="500"></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend data-en="Last things" data-es="Últimos detalles">Last things</legend>
+      <label data-en="Best time to reach you" data-es="Mejor hora para contactarte">Best time to reach you</label>
+      <input type="text" name="best_contact_time" maxlength="100">
+      <label data-en="How did you hear about us?" data-es="¿Cómo supiste de nosotros?">How did you hear about us?</label>
+      <input type="text" name="referral_source" maxlength="150">
+      <label data-en="Anything else we should know?" data-es="¿Algo más que debamos saber?">Anything else we should know?</label>
+      <textarea name="notes" maxlength="1000"></textarea>
+    </fieldset>
+
+    <button class="btn" type="submit" id="submit-btn"
+      data-en="Save My Home Profile" data-es="Guardar Mi Perfil">Save My Home Profile</button>
+    <p class="fine" style="text-align:center;margin-top:10px"
+      data-en="Your information stays private with Selah Spaces — never shared, never sold."
+      data-es="Tu información es privada de Selah Spaces — nunca se comparte ni se vende.">
+      Your information stays private with Selah Spaces — never shared, never sold.</p>
+  </form>
+</div>
+
+<script>
+  const INTAKE_ENDPOINT = 'https://selah-voice-5007-prod.twil.io/intake';
+
+  function setLang(lang){
+    document.getElementById('btn-en').classList.toggle('active', lang==='en');
+    document.getElementById('btn-es').classList.toggle('active', lang==='es');
+    document.querySelectorAll('[data-en]').forEach(el=>{
+      const v = el.getAttribute('data-'+lang);
+      if (v) el.innerHTML = v;
+    });
+    document.documentElement.lang = lang;
+  }
+
+  // Prefill from link params: intake.html?name=Maria&phone=8065551234
+  const qp = new URLSearchParams(location.search);
+  for (const k of ['name','phone','email']) {
+    if (qp.get(k)) { const el = document.querySelector(`[name=${k}]`); if (el) el.value = qp.get(k); }
+  }
+  if (qp.get('lang') === 'es') setLang('es');
+
+  async function submitIntake(e){
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    document.getElementById('err').style.display = 'none';
+    const data = new FormData(e.target);
+    try {
+      const r = await fetch(INTAKE_ENDPOINT, { method:'POST', body:new URLSearchParams(data) });
+      if (!r.ok) throw new Error('HTTP '+r.status);
+      document.getElementById('intake').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+      window.scrollTo({top:0, behavior:'smooth'});
+    } catch(err) {
+      document.getElementById('err').style.display = 'block';
+      btn.disabled = false;
+    }
+  }
+</script>
+</body>
+</html>

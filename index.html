@@ -1039,7 +1039,7 @@ footer {
     <p class="popup-sub" data-en="Yesenia visits your home, walks through every room, and builds a cleaning plan made exactly for you — at zero cost and with zero obligation." data-es="Yesenia visita tu hogar, recorre cada cuarto y crea un plan de limpieza hecho exactamente para ti — sin costo y sin obligación.">Yesenia visits your home, walks through every room, and builds a cleaning plan made exactly for you — at zero cost and with zero obligation.</p>
     <div class="popup-success" id="popup-success">
       <p data-en="You're all set." data-es="¡Todo listo!">You're all set.</p>
-      <span data-en="We'll text you within the hour to schedule your assessment." data-es="Te escribiremos en menos de una hora para agendar tu evaluación.">We'll text you within the hour to schedule your assessment.</span>
+      <span data-en="We'll reach out within the hour to schedule your assessment." data-es="Nos comunicaremos en menos de una hora para agendar tu evaluación.">We'll reach out within the hour to schedule your assessment.</span>
     </div>
     <form class="popup-form" id="popup-form" onsubmit="submitPopup(event)">
       <input type="text" id="popup-name" placeholder="Your Name" data-placeholder-en="Your Name" data-placeholder-es="Tu Nombre" required>
@@ -1056,20 +1056,40 @@ footer {
   const SUPABASE_URL = 'https://upfvakfjfyzvqnnqvgpq.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwZnZha2ZqZnl6dnFubnF2Z3BxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE3NDI0MjAsImV4cCI6MjA5NzMxODQyMH0.BO_ZUG3xKKbWkoIbrrG8vRXb9agO03hwkaL9ie_8yg0';
 
+  // Leads go to the Selah funnel endpoint (Twilio Function): it stores the
+  // lead server-side AND fires an instant Telegram alert to Carlos. If the
+  // endpoint is ever down, we fall back to writing Supabase directly so no
+  // lead is lost. NOTE: selah_leads columns are (source, service, message) —
+  // not (lead_source, service_type).
+  const LEAD_ENDPOINT = 'https://selah-voice-5007-prod.twil.io/lead';
+
   async function saveLead(payload) {
+    const clean = {};
+    for (const [k, v] of Object.entries(payload)) clean[k] = v == null ? '' : String(v);
     try {
-      await fetch(`${SUPABASE_URL}/rest/v1/selah_leads`, {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_ANON_KEY,
-          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify(payload)
-      });
-    } catch(err) {
-      console.error('Lead capture error:', err);
+      const r = await fetch(LEAD_ENDPOINT, { method: 'POST', body: new URLSearchParams(clean) });
+      if (!r.ok) throw new Error('lead endpoint HTTP ' + r.status);
+    } catch (err) {
+      console.error('Lead capture error, using fallback:', err);
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/selah_leads`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({
+            name: clean.name, phone: clean.phone,
+            email: clean.email || null, service: clean.service || null,
+            message: clean.message || null, source: clean.source || 'website',
+            status: 'new'
+          })
+        });
+      } catch (err2) {
+        console.error('Fallback lead write failed:', err2);
+      }
     }
   }
 
@@ -1120,11 +1140,9 @@ footer {
     await saveLead({
       name,
       phone,
-      email: email || null,
-      lead_source: 'website_popup',
-      service_type: 'free_assessment',
-      status: 'new',
-      created_at: new Date().toISOString()
+      email: email || '',
+      source: 'website_popup',
+      service: 'free_assessment'
     });
 
     document.getElementById('popup-form').style.display = 'none';
@@ -1141,12 +1159,10 @@ footer {
     await saveLead({
       name: `${d.first_name} ${d.last_name}`.trim(),
       phone: d.phone,
-      email: d.email || null,
-      service_type: d.service_type || null,
-      message: d.message || null,
-      lead_source: 'website_contact_form',
-      status: 'new',
-      created_at: new Date().toISOString()
+      email: d.email || '',
+      service: d.service_type || '',
+      message: d.message || '',
+      source: 'website_contact_form'
     });
 
     form.style.display = 'none';
