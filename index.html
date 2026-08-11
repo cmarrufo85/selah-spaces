@@ -1004,6 +1004,7 @@ footer {
       <div class="form-field">
         <label data-en="Message (optional)" data-es="Mensaje (opcional)">Message (optional)</label>
         <textarea name="message" placeholder="Tell us about your home — anything we should know going into the assessment..."></textarea>
+        <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       </div>
       <button type="submit" class="btn-primary" style="margin-top:8px;" data-en="Request Free Assessment" data-es="Solicitar Evaluación Gratuita">Request Free Assessment</button>
       <p class="form-note" data-en="We respond within the hour. Your information is never shared." data-es="Respondemos en menos de una hora. Tu información nunca se comparte.">We respond within the hour. Your information is never shared.</p>
@@ -1045,6 +1046,7 @@ footer {
       <input type="text" id="popup-name" placeholder="Your Name" data-placeholder-en="Your Name" data-placeholder-es="Tu Nombre" required>
       <input type="tel" id="popup-phone" placeholder="Phone Number" data-placeholder-en="Phone Number" data-placeholder-es="Número de Teléfono" required>
       <input type="email" id="popup-email" placeholder="Email (optional)" data-placeholder-en="Email (optional)" data-placeholder-es="Correo (opcional)">
+      <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <button type="submit" class="btn-primary" data-en="Book My Free Assessment" data-es="Reservar Mi Evaluación Gratuita">Book My Free Assessment</button>
       <p class="popup-disclaimer" data-en="We respond within the hour. No spam — just your assessment confirmation." data-es="Respondemos en menos de una hora. Sin spam — solo la confirmación de tu evaluación.">We respond within the hour. No spam — just your assessment confirmation.</p>
     </form>
@@ -1063,9 +1065,18 @@ footer {
   // not (lead_source, service_type).
   const LEAD_ENDPOINT = 'https://selah-voice-5007-prod.twil.io/lead';
 
+  // Referral attribution: /r?c=CODE redirects here with ?ref=CODE. Remember it
+  // for the whole visit so a lead submitted later still credits the referrer.
+  const REF_CODE = (function () {
+    const q = new URLSearchParams(location.search).get('ref');
+    if (q) { try { sessionStorage.setItem('selah_ref', q); } catch (e) {} return q; }
+    try { return sessionStorage.getItem('selah_ref') || ''; } catch (e) { return ''; }
+  })();
+
   async function saveLead(payload) {
     const clean = {};
     for (const [k, v] of Object.entries(payload)) clean[k] = v == null ? '' : String(v);
+    if (REF_CODE) clean.ref = REF_CODE;
     try {
       const r = await fetch(LEAD_ENDPOINT, { method: 'POST', body: new URLSearchParams(clean) });
       if (!r.ok) throw new Error('lead endpoint HTTP ' + r.status);
@@ -1137,12 +1148,14 @@ footer {
     const phone = document.getElementById('popup-phone').value.trim();
     const email = document.getElementById('popup-email').value.trim();
 
+    const hp = document.querySelector('#popup-form input[name="company"]');
     await saveLead({
       name,
       phone,
       email: email || '',
       source: 'website_popup',
-      service: 'free_assessment'
+      service: 'free_assessment',
+      company: hp ? hp.value : ''
     });
 
     document.getElementById('popup-form').style.display = 'none';
@@ -1162,7 +1175,8 @@ footer {
       email: d.email || '',
       service: d.service_type || '',
       message: d.message || '',
-      source: 'website_contact_form'
+      source: 'website_contact_form',
+      company: d.company || ''
     });
 
     form.style.display = 'none';
