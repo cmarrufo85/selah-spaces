@@ -17,7 +17,7 @@
 -->
 
 <!-- Attribution, analytics, and lead capture. IDs live in assets/selah.js. -->
-<script src="/assets/selah.js?v=1"></script>
+<script src="/assets/selah.js?v=1" defer></script>
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -139,6 +139,8 @@
 }
 </script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
@@ -803,7 +805,7 @@ footer {
           <picture>
             <source type="image/webp" srcset="images/living-room-800.webp 800w, images/living-room-1400.webp 1400w, images/living-room-2000.webp 2000w" sizes="(max-width:768px) 100vw, 1200px" />
             <img src="images/living-room-1400.jpg" srcset="images/living-room-800.jpg 800w, images/living-room-1400.jpg 1400w, images/living-room-2000.jpg 2000w" sizes="(max-width:768px) 100vw, 1200px"
-                 alt="Living room with sectional sofa and rug, cleaned and styled" width="1400" height="788" decoding="async" />
+                 alt="Living room with sectional sofa and rug, cleaned and styled" width="1400" height="788" decoding="async" fetchpriority="high" />
           </picture>
           <div class="gal-veil">
             <p class="gal-room" data-en="A living room that invites you to sit down." data-es="Una sala que te invita a sentarte.">A living room that invites you to sit down.</p>
