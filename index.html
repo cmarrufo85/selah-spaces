@@ -450,32 +450,32 @@ nav {
   margin: 0 auto 24px;
 }
 
-/* ── TESTIMONIALS ── */
-.testimonials {
+/* ── OUR PROMISE ── */
+.promise-section {
   padding: 120px 48px;
   max-width: 1200px; margin: 0 auto;
 }
-.testimonials-header { text-align: center; margin-bottom: 72px; }
-.testimonials-grid {
+.promise-header { text-align: center; margin-bottom: 72px; }
+.promise-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2px;
 }
-.testimonial-card {
+.promise-card {
   background: var(--card);
   padding: 44px 36px;
   border-bottom: 2px solid transparent;
   transition: border-color 0.3s;
 }
-.testimonial-card:hover { border-bottom-color: var(--gold); }
-.testimonial-stars { color: var(--gold); font-size: 13px; letter-spacing: 3px; margin-bottom: 20px; }
-.testimonial-text {
+.promise-card:hover { border-bottom-color: var(--gold); }
+.promise-mark { color: var(--gold); font-size: 13px; letter-spacing: 3px; margin-bottom: 20px; }
+.promise-text {
   font-family: 'Cormorant Garamond', serif;
   font-size: 20px; font-style: italic; font-weight: 300;
   line-height: 1.6; color: var(--white); margin-bottom: 28px;
 }
-.testimonial-author { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-.testimonial-source { font-size: 11px; color: var(--gold); margin-top: 4px; }
+.promise-title { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.promise-meta { font-size: 11px; color: var(--gold); margin-top: 4px; }
 
 /* ── ABOUT ── */
 .about {
@@ -734,7 +734,7 @@ footer {
   .nav-right { gap: 16px; }
   .services { padding: 80px 20px; }
   .how { padding: 80px 20px; }
-  .testimonials { padding: 80px 20px; }
+  .promise-section { padding: 80px 20px; }
   .about { padding: 80px 20px; }
   .about-inner { grid-template-columns: 1fr; gap: 52px; }
   .promise-wrap { padding: 0 20px; }
@@ -902,7 +902,7 @@ footer {
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- GALLERY -->
 <section class="gallery" id="gallery">
   <div class="gallery-inner">
     <div class="gallery-header">
@@ -986,38 +986,33 @@ footer {
 </section>
 
 <!-- OUR PROMISE
-     This section holds the place where testimonials will go. It stays as
-     written until real, named customers have actually said these things —
-     see docs/FACEBOOK-PLAYBOOK.md. Do not put invented reviews here. -->
-<section class="testimonials">
-  <div class="testimonials-header">
+     Commitments we make, in our own voice. These are not customer quotes
+     and must never be presented as any. -->
+<section class="promise-section">
+  <div class="promise-header">
     <p class="section-eyebrow" data-en="Our Promise" data-es="Nuestra Promesa">Our Promise</p>
     <h2 class="section-title" data-en="We're new here.<br>So we over-deliver." data-es="Somos nuevos aquí.<br>Por eso damos de más.">We're new here.<br>So we over-deliver.</h2>
   </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <div class="testimonial-stars">‖</div>
-      <p class="testimonial-text" data-en="Every home starts with a free in-person assessment — never a phone quote. You'll know exactly what we're doing and exactly what it costs before anyone lifts a cloth." data-es="Cada hogar comienza con una evaluación gratuita en persona — nunca una cotización por teléfono. Sabrás exactamente qué haremos y cuánto cuesta antes de que alguien levante un paño.">Every home starts with a free in-person assessment — never a phone quote. You'll know exactly what we're doing and exactly what it costs before anyone lifts a cloth.</p>
-      <p class="testimonial-author" data-en="No Surprises" data-es="Sin Sorpresas">No Surprises</p>
-      <p class="testimonial-source" data-en="Lubbock, TX" data-es="Lubbock, TX">Lubbock, TX</p>
+  <div class="promise-grid">
+    <div class="promise-card">
+      <div class="promise-mark">‖</div>
+      <p class="promise-text" data-en="Every home starts with a free in-person assessment — never a phone quote. You'll know exactly what we're doing and exactly what it costs before anyone lifts a cloth." data-es="Cada hogar comienza con una evaluación gratuita en persona — nunca una cotización por teléfono. Sabrás exactamente qué haremos y cuánto cuesta antes de que alguien levante un paño.">Every home starts with a free in-person assessment — never a phone quote. You'll know exactly what we're doing and exactly what it costs before anyone lifts a cloth.</p>
+      <p class="promise-title" data-en="No Surprises" data-es="Sin Sorpresas">No Surprises</p>
+      <p class="promise-meta" data-en="Lubbock, TX" data-es="Lubbock, TX">Lubbock, TX</p>
     </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">‖</div>
-      <p class="testimonial-text" data-en="If something isn't right, tell us within 24 hours and we come back and fix it. No argument, no invoice, no awkward conversation. That's the whole policy." data-es="Si algo no quedó bien, dínoslo dentro de 24 horas y volvemos a arreglarlo. Sin discusión, sin factura, sin conversaciones incómodas. Esa es toda la política.">If something isn't right, tell us within 24 hours and we come back and fix it. No argument, no invoice, no awkward conversation. That's the whole policy.</p>
-      <p class="testimonial-author" data-en="24-Hour Guarantee" data-es="Garantía de 24 Horas">24-Hour Guarantee</p>
-      <p class="testimonial-source" data-en="Every Service" data-es="Cada Servicio">Every Service</p>
+    <div class="promise-card">
+      <div class="promise-mark">‖</div>
+      <p class="promise-text" data-en="If something isn't right, tell us within 24 hours and we come back and fix it. No argument, no invoice, no awkward conversation. That's the whole policy." data-es="Si algo no quedó bien, dínoslo dentro de 24 horas y volvemos a arreglarlo. Sin discusión, sin factura, sin conversaciones incómodas. Esa es toda la política.">If something isn't right, tell us within 24 hours and we come back and fix it. No argument, no invoice, no awkward conversation. That's the whole policy.</p>
+      <p class="promise-title" data-en="24-Hour Guarantee" data-es="Garantía de 24 Horas">24-Hour Guarantee</p>
+      <p class="promise-meta" data-en="Every Service" data-es="Cada Servicio">Every Service</p>
     </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">‖</div>
-      <p class="testimonial-text" data-en="Insured and bonded, locally owned, and fully bilingual. You're handing us the keys to the place your family rests. We don't take that lightly." data-es="Asegurada y afianzada, de propiedad local y completamente bilingüe. Nos estás entregando las llaves del lugar donde descansa tu familia. No lo tomamos a la ligera.">Insured and bonded, locally owned, and fully bilingual. You're handing us the keys to the place your family rests. We don't take that lightly.</p>
-      <p class="testimonial-author" data-en="Insured &amp; Bonded" data-es="Asegurada y Afianzada">Insured &amp; Bonded</p>
-      <p class="testimonial-source" data-en="Locally Owned" data-es="Propiedad Local">Locally Owned</p>
+    <div class="promise-card">
+      <div class="promise-mark">‖</div>
+      <p class="promise-text" data-en="Insured and bonded, locally owned, and fully bilingual. You're handing us the keys to the place your family rests. We don't take that lightly." data-es="Asegurada y afianzada, de propiedad local y completamente bilingüe. Nos estás entregando las llaves del lugar donde descansa tu familia. No lo tomamos a la ligera.">Insured and bonded, locally owned, and fully bilingual. You're handing us the keys to the place your family rests. We don't take that lightly.</p>
+      <p class="promise-title" data-en="Insured &amp; Bonded" data-es="Asegurada y Afianzada">Insured &amp; Bonded</p>
+      <p class="promise-meta" data-en="Locally Owned" data-es="Propiedad Local">Locally Owned</p>
     </div>
   </div>
-  <p style="text-align:center;margin-top:56px;font-size:13px;color:var(--muted);line-height:1.8;max-width:520px;margin-left:auto;margin-right:auto;">
-    <span data-en="We're building our reputation one home at a time. If we've cleaned for you," data-es="Estamos construyendo nuestra reputación un hogar a la vez. Si limpiamos para ti,">We're building our reputation one home at a time. If we've cleaned for you,</span>
-    <a href="https://g.page/r/CSl1cV7MEuznEBM/review" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid var(--gold);text-decoration:none;" data-en="leave us the first review" data-es="déjanos la primera reseña">leave us the first review</a><span data-en="." data-es=".">.</span>
-  </p>
 </section>
 
 <!-- ABOUT -->
