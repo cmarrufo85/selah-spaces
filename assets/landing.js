@@ -9,6 +9,18 @@
 (function (w, d) {
   'use strict';
 
+  // ── MENU ──────────────────────────────────────────────────────────────
+  // The links are always in the DOM so crawlers see them; this only drives
+  // the mobile open/closed state.
+  d.addEventListener('DOMContentLoaded', function () {
+    var t = d.getElementById('lp-nav-toggle'), m = d.getElementById('lp-menu');
+    if (!t || !m) return;
+    t.addEventListener('click', function () {
+      var open = m.classList.toggle('open');
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
   // ── LANGUAGE ──────────────────────────────────────────────────────────
   function setLang(lang) {
     var en = d.getElementById('btn-en'), es = d.getElementById('btn-es');

@@ -629,6 +629,37 @@ footer {
 @media (max-width: 900px) {
   .how-steps { grid-template-columns: 1fr; }
 }
+/* ── SITE MENU ── */
+.nav-menu { display: flex; align-items: center; gap: 26px; }
+.nav-menu a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 400; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--white); text-decoration: none; opacity: 0.78;
+  transition: opacity 0.2s ease, color 0.2s ease; white-space: nowrap;
+}
+.nav-menu a:hover, .nav-menu a:focus-visible { opacity: 1; color: var(--gold); }
+.nav-toggle {
+  display: none; background: none; border: 1px solid var(--border);
+  color: var(--white); font-size: 15px; line-height: 1; cursor: pointer;
+  padding: 9px 12px; letter-spacing: 0;
+}
+.nav-toggle:hover { border-color: var(--gold); color: var(--gold); }
+
+@media (max-width: 900px) {
+  .nav-toggle { display: block; order: 3; }
+  .nav-menu {
+    display: none; order: 4; flex-basis: 100%;
+    flex-direction: column; align-items: flex-start; gap: 0;
+    margin-top: 16px; border-top: 1px solid var(--border-subtle);
+  }
+  .nav-menu.open { display: flex; }
+  .nav-menu a {
+    width: 100%; padding: 15px 2px; font-size: 13px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  nav { flex-wrap: wrap; }
+}
+
 @media (max-width: 768px) {
   nav { padding: 18px 20px; }
   .nav-right { gap: 16px; }
@@ -690,6 +721,12 @@ footer {
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">Selah<span>.</span></a>
+  <div class="nav-menu" id="site-menu">
+    <a href="/services.html" data-en="Services" data-es="Servicios">Services</a>
+    <a href="/property-management.html" data-en="Property Managers" data-es="Administradores">Property Managers</a>
+    <a href="/about.html" data-en="About" data-es="Nosotros">About</a>
+  </div>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">&#9776;</button>
   <div class="nav-right">
     <div class="lang-toggle">
       <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
@@ -1140,6 +1177,19 @@ footer {
   // direct Supabase write as fallback. saveLead resolves false if BOTH fail,
   // and the handlers below show the visitor a real error instead of a
   // "thank you" that quietly loses their request.
+
+  // ── MENU ──
+  // Nav links are always in the DOM for crawlers; this only toggles the
+  // mobile presentation.
+  (function () {
+    var t = document.getElementById('nav-toggle'),
+        m = document.getElementById('site-menu');
+    if (!t || !m) return;
+    t.addEventListener('click', function () {
+      var open = m.classList.toggle('open');
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
 
   // ── LANGUAGE ──
   function setLang(lang) {
