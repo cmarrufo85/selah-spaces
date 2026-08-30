@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Selah Spaces</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<style>
+  body{background:#0A0A0A;color:#C9A96E;font-family:system-ui,sans-serif;font-weight:300;
+       display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;
+       letter-spacing:.3em;font-size:13px}
+</style>
+</head>
+<body>
+‖
+
+<script>
+/* Branded referral redirect.
+   Referral links go out as https://selahspaces.io/r/?c=SELAH-XXXXXX rather
+   than a raw twil.io URL — a customer forwarding a link to a friend should be
+   forwarding OUR domain, and Facebook demotes unknown shortener hosts.
+   The click is logged by the Twilio /r endpoint (which owns the database
+   credentials); this page only carries the code across and gets out of the way.
+   The redirect happens even if the logging beacon fails. */
+(function () {
+  var code = (new URLSearchParams(location.search).get('c') || '')
+    .toUpperCase().replace(/[^A-Z0-9-]/g, '').slice(0, 32);
+
+  var target = '/?utm_source=referral&utm_medium=word_of_mouth';
+  if (code) target = '/?ref=' + encodeURIComponent(code) + '&utm_source=referral&utm_medium=word_of_mouth';
+
+  if (code) {
+    try {
+      // Beacon, not a redirect hop: the visitor never waits on this.
+      var url = 'https://selah-voice-5007-prod.twil.io/r?c=' + encodeURIComponent(code) + '&log=1';
+      if (navigator.sendBeacon) navigator.sendBeacon(url);
+      else fetch(url, { mode: 'no-cors', keepalive: true });
+    } catch (e) {}
+  }
+
+  location.replace(target);
+})();
+</script>
+</body>
+</html>

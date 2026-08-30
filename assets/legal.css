@@ -1,0 +1,98 @@
+/* Shared styling for the legal pages (privacy, terms). Mirrors the tokens
+   used inline on index.html so the pages don't look like a different site. */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0A0A0A;
+  --surface: #141414;
+  --card: #1C1C1C;
+  --gold: #C9A96E;
+  --white: #F7F3EE;
+  --muted: #6B6B6B;
+  --border: rgba(201,169,110,0.15);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+.legal-nav {
+  padding: 22px 48px;
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.legal-nav a.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; letter-spacing: 0.08em;
+  color: var(--white); text-decoration: none;
+}
+.legal-nav a.logo span { color: var(--gold); }
+.legal-nav a.back {
+  font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none;
+  border-bottom: 1px solid var(--gold); padding-bottom: 2px;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 80px 24px 120px;
+}
+.eyebrow {
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+}
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(36px, 6vw, 54px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.updated { color: var(--muted); font-size: 12px; margin-top: 20px; letter-spacing: 0.05em; }
+
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(22px, 3vw, 28px);
+  color: var(--white);
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+p { margin-top: 16px; color: rgba(247,243,238,0.72); font-size: 15px; }
+ul { margin-top: 16px; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+li { color: rgba(247,243,238,0.72); font-size: 15px; }
+strong { color: var(--white); font-weight: 500; }
+a { color: var(--gold); }
+
+/* Callout for the SMS block — carriers want this findable at a glance. */
+.callout {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--gold);
+  padding: 24px 28px;
+  margin-top: 20px;
+}
+.callout p:first-child { margin-top: 0; }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 2;
+}
+footer .caesura { color: var(--gold); font-size: 18px; margin-bottom: 20px; }
+
+@media (max-width: 640px) {
+  .legal-nav { padding: 18px 20px; }
+  main { padding: 48px 20px 80px; }
+}

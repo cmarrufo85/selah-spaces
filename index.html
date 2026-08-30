@@ -10,6 +10,15 @@
 <meta name="keywords" content="house cleaning Lubbock TX, residential cleaning Lubbock, deep clean Lubbock, maid service Lubbock, limpieza de casas Lubbock, move out cleaning Lubbock">
 <link rel="canonical" href="https://selahspaces.io/">
 
+<!-- Meta domain verification. Paste the token from Business Settings →
+     Brand Safety → Domains and uncomment. Required before Facebook stops
+     demoting links to selahspaces.io.
+<meta name="facebook-domain-verification" content="PASTE_TOKEN_HERE">
+-->
+
+<!-- Attribution, analytics, and lead capture. IDs live in assets/selah.js. -->
+<script src="/assets/selah.js?v=1"></script>
+
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Selah Spaces — Premium Residential Cleaning in Lubbock, TX">
@@ -58,10 +67,14 @@
   },
   "openingHours": "Mo-Sa 08:00-18:00",
   "priceRange": "$$",
-  "areaServed": {
-    "@type": "City",
-    "name": "Lubbock"
-  },
+  "areaServed": [
+    {"@type": "City", "name": "Lubbock", "addressRegion": "TX"},
+    {"@type": "City", "name": "Wolfforth", "addressRegion": "TX"},
+    {"@type": "City", "name": "Shallowater", "addressRegion": "TX"},
+    {"@type": "City", "name": "Slaton", "addressRegion": "TX"},
+    {"@type": "City", "name": "Idalou", "addressRegion": "TX"},
+    {"@type": "City", "name": "Ransom Canyon", "addressRegion": "TX"}
+  ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Cleaning Services",
@@ -120,7 +133,7 @@
     {
       "@type": "Question",
       "name": "How do I book?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Fill out the form on this page, call us at (806) 630-0278, or text us. We respond within the hour."}
+      "acceptedAnswer": {"@type": "Answer", "text": "Fill out the form on this page, call us at (806) 630-0278, or message us on Facebook. We respond within the hour."}
     }
   ]
 }
@@ -323,6 +336,13 @@ nav {
   font-size: 26px; font-weight: 400; margin-bottom: 14px;
 }
 .service-desc { font-size: 14px; color: var(--muted); line-height: 1.8; }
+.service-link {
+  display: inline-block; margin-top: 18px;
+  font-size: 12px; letter-spacing: 0.08em; color: var(--gold);
+  text-decoration: none; border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.service-link:hover { border-bottom-color: var(--gold); }
 
 /* ── HOW IT WORKS ── */
 .how {
@@ -481,6 +501,37 @@ nav {
 .form-field textarea { resize: vertical; min-height: 100px; }
 .form-field select option { background: var(--card); }
 .form-note { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* SMS consent — required for A2P 10DLC. Must be an unchecked box the
+   visitor ticks themselves; never pre-checked, never implied. */
+.consent {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 11.5px; color: var(--muted); line-height: 1.6;
+  margin-top: 4px;
+}
+.consent input[type="checkbox"] {
+  appearance: none; -webkit-appearance: none;
+  flex: 0 0 15px; width: 15px; height: 15px; margin-top: 2px;
+  border: 1px solid var(--border); background: transparent;
+  cursor: pointer; position: relative; border-radius: 1px;
+}
+.consent input[type="checkbox"]:checked { background: var(--gold); border-color: var(--gold); }
+.consent input[type="checkbox"]:checked::after {
+  content: '✓'; position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--black); font-size: 11px; line-height: 1;
+}
+.consent a { color: var(--muted); text-decoration: underline; }
+.consent a:hover { color: var(--gold); }
+
+/* Shown only when a submission genuinely failed to reach us. */
+.form-error {
+  display: none; padding: 16px 18px; margin-top: 12px;
+  background: rgba(190,80,60,0.09); border: 1px solid rgba(190,80,60,0.35);
+  font-size: 13px; color: #E8B4A6; line-height: 1.6;
+}
+.form-error a { color: var(--gold); }
+
 .form-success {
   display: none; padding: 32px;
   background: rgba(201,169,110,0.07); border: 1px solid var(--border);
@@ -636,7 +687,7 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Selah<span>.</span></a>
+  <a href="/" class="nav-logo">Selah<span>.</span></a>
   <div class="nav-right">
     <div class="lang-toggle">
       <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
@@ -687,6 +738,7 @@ footer {
       <span class="service-icon">✦</span>
       <h3 class="service-name" data-en="Deep Clean" data-es="Limpieza Profunda">Deep Clean</h3>
       <p class="service-desc" data-en="Top-to-bottom service for homes that demand the highest standard. Perfect for first-time clients and seasonal resets. We reach what others miss." data-es="Servicio de arriba a abajo para hogares que exigen el más alto estándar. Perfecto para nuevos clientes y resets de temporada.">Top-to-bottom service for homes that demand the highest standard. Perfect for first-time clients and seasonal resets. We reach what others miss.</p>
+      <a class="service-link" href="/deep-clean.html" data-en="See what's included →" data-es="Ver qué incluye →">See what's included →</a>
     </div>
     <div class="service-card">
       <span class="service-icon">◈</span>
@@ -697,6 +749,7 @@ footer {
       <span class="service-icon">◇</span>
       <h3 class="service-name" data-en="Move In / Move Out" data-es="Mudanza / Entrega">Move In / Move Out</h3>
       <p class="service-desc" data-en="Meticulous preparation for transitions. We leave no corner overlooked so you start or close every chapter the right way." data-es="Preparación meticulosa para transiciones. No dejamos ningún rincón sin atender para que comiences o cierres cada capítulo de la mejor manera.">Meticulous preparation for transitions. We leave no corner overlooked so you start or close every chapter the right way.</p>
+      <a class="service-link" href="/move-out.html" data-en="See the walkthrough checklist →" data-es="Ver la lista de inspección →">See the walkthrough checklist →</a>
     </div>
     <div class="service-card">
       <span class="service-icon">⬡</span>
@@ -819,31 +872,39 @@ footer {
   </div>
 </section>
 
+<!-- OUR PROMISE
+     This section holds the place where testimonials will go. It stays as
+     written until real, named customers have actually said these things —
+     see docs/FACEBOOK-PLAYBOOK.md. Do not put invented reviews here. -->
 <section class="testimonials">
   <div class="testimonials-header">
-    <p class="section-eyebrow" data-en="Client Stories" data-es="Testimonios">Client Stories</p>
-    <h2 class="section-title" data-en="What our clients say." data-es="Lo que dicen nuestros clientes.">What our clients say.</h2>
+    <p class="section-eyebrow" data-en="Our Promise" data-es="Nuestra Promesa">Our Promise</p>
+    <h2 class="section-title" data-en="We're new here.<br>So we over-deliver." data-es="Somos nuevos aquí.<br>Por eso damos de más.">We're new here.<br>So we over-deliver.</h2>
   </div>
   <div class="testimonials-grid">
     <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text" data-en="&ldquo;Yesenia came for the assessment and I knew immediately this was different. She noticed things I'd forgotten about. The clean itself was immaculate.&rdquo;" data-es="&ldquo;Yesenia vino para la evaluación y de inmediato supe que esto era diferente. Notó cosas que yo había olvidado. La limpieza fue impecable.&rdquo;">"Yesenia came for the assessment and I knew immediately this was different. She noticed things I'd forgotten about. The clean itself was immaculate."</p>
-      <p class="testimonial-author">— Maria R.</p>
-      <p class="testimonial-source" data-en="Lubbock, TX · Recurring Client" data-es="Lubbock, TX · Cliente Recurrente">Lubbock, TX · Recurring Client</p>
+      <div class="testimonial-stars">‖</div>
+      <p class="testimonial-text" data-en="Every home starts with a free in-person assessment — never a phone quote. You'll know exactly what we're doing and exactly what it costs before anyone lifts a cloth." data-es="Cada hogar comienza con una evaluación gratuita en persona — nunca una cotización por teléfono. Sabrás exactamente qué haremos y cuánto cuesta antes de que alguien levante un paño.">Every home starts with a free in-person assessment — never a phone quote. You'll know exactly what we're doing and exactly what it costs before anyone lifts a cloth.</p>
+      <p class="testimonial-author" data-en="No Surprises" data-es="Sin Sorpresas">No Surprises</p>
+      <p class="testimonial-source" data-en="Lubbock, TX" data-es="Lubbock, TX">Lubbock, TX</p>
     </div>
     <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text" data-en="&ldquo;Move-out clean for a house we'd lived in for 8 years. They got our full deposit back. Worth every penny — and then some.&rdquo;" data-es="&ldquo;Limpieza de mudanza para una casa en la que vivimos 8 años. Nos devolvieron el depósito completo. Valió cada centavo.&rdquo;">"Move-out clean for a house we'd lived in for 8 years. They got our full deposit back. Worth every penny — and then some."</p>
-      <p class="testimonial-author">— Sandra L.</p>
-      <p class="testimonial-source" data-en="Lubbock, TX · Move-Out Clean" data-es="Lubbock, TX · Limpieza de Mudanza">Lubbock, TX · Move-Out Clean</p>
+      <div class="testimonial-stars">‖</div>
+      <p class="testimonial-text" data-en="If something isn't right, tell us within 24 hours and we come back and fix it. No argument, no invoice, no awkward conversation. That's the whole policy." data-es="Si algo no quedó bien, dínoslo dentro de 24 horas y volvemos a arreglarlo. Sin discusión, sin factura, sin conversaciones incómodas. Esa es toda la política.">If something isn't right, tell us within 24 hours and we come back and fix it. No argument, no invoice, no awkward conversation. That's the whole policy.</p>
+      <p class="testimonial-author" data-en="24-Hour Guarantee" data-es="Garantía de 24 Horas">24-Hour Guarantee</p>
+      <p class="testimonial-source" data-en="Every Service" data-es="Cada Servicio">Every Service</p>
     </div>
     <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text" data-en="&ldquo;I've had other cleaning services. This is not the same. Selah Spaces treats your home like it's their own. The attention to detail is unlike anything I've experienced.&rdquo;" data-es="&ldquo;He tenido otros servicios de limpieza. Esto no es lo mismo. Selah Spaces trata tu hogar como si fuera el suyo. La atención al detalle es incomparable.&rdquo;">"I've had other cleaning services. This is not the same. Selah Spaces treats your home like it's their own. The attention to detail is unlike anything I've experienced."</p>
-      <p class="testimonial-author">— Patricia M.</p>
-      <p class="testimonial-source" data-en="Lubbock, TX · Deep Clean" data-es="Lubbock, TX · Limpieza Profunda">Lubbock, TX · Deep Clean</p>
+      <div class="testimonial-stars">‖</div>
+      <p class="testimonial-text" data-en="Insured and bonded, locally owned, and fully bilingual. You're handing us the keys to the place your family rests. We don't take that lightly." data-es="Asegurada y afianzada, de propiedad local y completamente bilingüe. Nos estás entregando las llaves del lugar donde descansa tu familia. No lo tomamos a la ligera.">Insured and bonded, locally owned, and fully bilingual. You're handing us the keys to the place your family rests. We don't take that lightly.</p>
+      <p class="testimonial-author" data-en="Insured &amp; Bonded" data-es="Asegurada y Afianzada">Insured &amp; Bonded</p>
+      <p class="testimonial-source" data-en="Locally Owned" data-es="Propiedad Local">Locally Owned</p>
     </div>
   </div>
+  <p style="text-align:center;margin-top:56px;font-size:13px;color:var(--muted);line-height:1.8;max-width:520px;margin-left:auto;margin-right:auto;">
+    <span data-en="We're building our reputation one home at a time. If we've cleaned for you," data-es="Estamos construyendo nuestra reputación un hogar a la vez. Si limpiamos para ti,">We're building our reputation one home at a time. If we've cleaned for you,</span>
+    <a href="https://g.page/r/CSl1cV7MEuznEBM/review" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid var(--gold);text-decoration:none;" data-en="leave us the first review" data-es="déjanos la primera reseña">leave us the first review</a><span data-en="." data-es=".">.</span>
+  </p>
 </section>
 
 <!-- ABOUT -->
@@ -955,7 +1016,7 @@ footer {
         <span data-en="How quickly do you respond?" data-es="¿Qué tan rápido responden?">How quickly do you respond?</span>
         <span class="faq-icon">+</span>
       </button>
-      <div class="faq-answer" data-en="Within the hour — always. We know your time matters. Fill out the form, text us at (806) 630-0278, or call and someone from the Selah team will be in touch immediately." data-es="En menos de una hora — siempre. Sabemos que tu tiempo importa. Llena el formulario, escríbenos al (806) 630-0278 y alguien del equipo Selah se pondrá en contacto de inmediato.">Within the hour — always. We know your time matters. Fill out the form, text us at (806) 630-0278, or call and someone from the Selah team will be in touch immediately.</div>
+      <div class="faq-answer" data-en="Within the hour — always. We know your time matters. Fill out the form or call us at (806) 630-0278 and someone from the Selah team will be in touch immediately." data-es="En menos de una hora — siempre. Sabemos que tu tiempo importa. Llena el formulario o llámanos al (806) 630-0278 y alguien del equipo Selah se pondrá en contacto de inmediato.">Within the hour — always. We know your time matters. Fill out the form or call us at (806) 630-0278 and someone from the Selah team will be in touch immediately.</div>
     </div>
 
   </div>
@@ -1006,8 +1067,13 @@ footer {
         <textarea name="message" placeholder="Tell us about your home — anything we should know going into the assessment..."></textarea>
         <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       </div>
+      <label class="consent">
+        <input type="checkbox" name="sms_consent" value="true">
+        <span data-en="Text me about my assessment. I agree to receive text messages from Selah Spaces about my assessment and service. Msg &amp; data rates may apply. Reply STOP to opt out. See our <a href=&quot;/privacy.html&quot;>Privacy Policy</a>." data-es="Envíenme mensajes de texto sobre mi evaluación. Acepto recibir mensajes de texto de Selah Spaces sobre mi evaluación y servicio. Pueden aplicar tarifas de mensajes y datos. Responde STOP para cancelar. Ver nuestra <a href=&quot;/privacy.html&quot;>Política de Privacidad</a>.">Text me about my assessment. I agree to receive text messages from Selah Spaces about my assessment and service. Msg &amp; data rates may apply. Reply STOP to opt out. See our <a href="/privacy.html">Privacy Policy</a>.</span>
+      </label>
       <button type="submit" class="btn-primary" style="margin-top:8px;" data-en="Request Free Assessment" data-es="Solicitar Evaluación Gratuita">Request Free Assessment</button>
-      <p class="form-note" data-en="We respond within the hour. Your information is never shared." data-es="Respondemos en menos de una hora. Tu información nunca se comparte.">We respond within the hour. Your information is never shared.</p>
+      <p class="form-note" data-en="We respond within the hour. Your information is never shared. Consent to texts is not required to book." data-es="Respondemos en menos de una hora. Tu información nunca se comparte. El consentimiento para mensajes no es obligatorio para reservar.">We respond within the hour. Your information is never shared. Consent to texts is not required to book.</p>
+      <div class="form-error" id="contact-error" data-en="We couldn't send that through. Please call us at <a href=&quot;tel:8066300278&quot;>(806) 630-0278</a> — we'll take care of you right away." data-es="No pudimos enviar eso. Por favor llámanos al <a href=&quot;tel:8066300278&quot;>(806) 630-0278</a> — te atenderemos de inmediato.">We couldn't send that through. Please call us at <a href="tel:8066300278">(806) 630-0278</a> — we'll take care of you right away.</div>
       <div class="form-success" id="contact-success">
         <p data-en="Request received." data-es="Solicitud recibida.">Request received.</p>
         <span data-en="We'll reach out within the hour to schedule your free assessment." data-es="Nos comunicaremos en menos de una hora para agendar tu evaluación gratuita.">We'll reach out within the hour to schedule your free assessment.</span>
@@ -1022,7 +1088,9 @@ footer {
   <div class="footer-copy">© 2026 Selah Spaces LLC. All rights reserved.</div>
   <div class="footer-contact">
     Lubbock, TX &nbsp;·&nbsp; <a href="tel:8066300278">(806) 630-0278</a><br>
-    <a href="mailto:hello@selahspaces.io">hello@selahspaces.io</a>
+    <a href="mailto:hello@selahspaces.io">hello@selahspaces.io</a><br>
+    <a href="/deep-clean.html">Deep Clean</a> &nbsp;·&nbsp; <a href="/move-out.html">Move-Out Clean</a> &nbsp;·&nbsp; <a href="/free-assessment.html">Free Assessment</a><br>
+    <a href="/checklist.html">Free Checklist</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms.html">Terms</a>
   </div>
 </footer>
 
@@ -1047,62 +1115,24 @@ footer {
       <input type="tel" id="popup-phone" placeholder="Phone Number" data-placeholder-en="Phone Number" data-placeholder-es="Número de Teléfono" required>
       <input type="email" id="popup-email" placeholder="Email (optional)" data-placeholder-en="Email (optional)" data-placeholder-es="Correo (opcional)">
       <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <label class="consent" style="margin:2px 0 4px;">
+        <input type="checkbox" name="sms_consent" value="true">
+        <span data-en="Text me about my assessment. Msg &amp; data rates may apply. Reply STOP to opt out. <a href=&quot;/privacy.html&quot;>Privacy Policy</a>." data-es="Envíenme mensajes de texto sobre mi evaluación. Pueden aplicar tarifas. Responde STOP para cancelar. <a href=&quot;/privacy.html&quot;>Política de Privacidad</a>.">Text me about my assessment. Msg &amp; data rates may apply. Reply STOP to opt out. <a href="/privacy.html">Privacy Policy</a>.</span>
+      </label>
       <button type="submit" class="btn-primary" data-en="Book My Free Assessment" data-es="Reservar Mi Evaluación Gratuita">Book My Free Assessment</button>
+      <div class="form-error" id="popup-error" data-en="We couldn't send that through. Please call <a href=&quot;tel:8066300278&quot;>(806) 630-0278</a>." data-es="No pudimos enviar eso. Por favor llama al <a href=&quot;tel:8066300278&quot;>(806) 630-0278</a>.">We couldn't send that through. Please call <a href="tel:8066300278">(806) 630-0278</a>.</div>
       <p class="popup-disclaimer" data-en="We respond within the hour. No spam — just your assessment confirmation." data-es="Respondemos en menos de una hora. Sin spam — solo la confirmación de tu evaluación.">We respond within the hour. No spam — just your assessment confirmation.</p>
     </form>
   </div>
 </div>
 
 <script>
-  // ── CONFIG ──
-  const SUPABASE_URL = 'https://upfvakfjfyzvqnnqvgpq.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwZnZha2ZqZnl6dnFubnF2Z3BxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE3NDI0MjAsImV4cCI6MjA5NzMxODQyMH0.BO_ZUG3xKKbWkoIbrrG8vRXb9agO03hwkaL9ie_8yg0';
-
-  // Leads go to the Selah funnel endpoint (Twilio Function): it stores the
-  // lead server-side AND fires an instant Telegram alert to Carlos. If the
-  // endpoint is ever down, we fall back to writing Supabase directly so no
-  // lead is lost. NOTE: selah_leads columns are (source, service, message) —
-  // not (lead_source, service_type).
-  const LEAD_ENDPOINT = 'https://selah-voice-5007-prod.twil.io/lead';
-
-  // Referral attribution: /r?c=CODE redirects here with ?ref=CODE. Remember it
-  // for the whole visit so a lead submitted later still credits the referrer.
-  const REF_CODE = (function () {
-    const q = new URLSearchParams(location.search).get('ref');
-    if (q) { try { sessionStorage.setItem('selah_ref', q); } catch (e) {} return q; }
-    try { return sessionStorage.getItem('selah_ref') || ''; } catch (e) { return ''; }
-  })();
-
-  async function saveLead(payload) {
-    const clean = {};
-    for (const [k, v] of Object.entries(payload)) clean[k] = v == null ? '' : String(v);
-    if (REF_CODE) clean.ref = REF_CODE;
-    try {
-      const r = await fetch(LEAD_ENDPOINT, { method: 'POST', body: new URLSearchParams(clean) });
-      if (!r.ok) throw new Error('lead endpoint HTTP ' + r.status);
-    } catch (err) {
-      console.error('Lead capture error, using fallback:', err);
-      try {
-        await fetch(`${SUPABASE_URL}/rest/v1/selah_leads`, {
-          method: 'POST',
-          headers: {
-            'apikey': SUPABASE_ANON_KEY,
-            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-            'Content-Type': 'application/json',
-            'Prefer': 'return=minimal'
-          },
-          body: JSON.stringify({
-            name: clean.name, phone: clean.phone,
-            email: clean.email || null, service: clean.service || null,
-            message: clean.message || null, source: clean.source || 'website',
-            status: 'new'
-          })
-        });
-      } catch (err2) {
-        console.error('Fallback lead write failed:', err2);
-      }
-    }
-  }
+  // Lead capture, attribution, and analytics all live in /assets/selah.js
+  // (window.Selah). Leads go to the Twilio funnel endpoint — it stores the
+  // lead server-side AND fires an instant Telegram alert to Carlos — with a
+  // direct Supabase write as fallback. saveLead resolves false if BOTH fail,
+  // and the handlers below show the visitor a real error instead of a
+  // "thank you" that quietly loses their request.
 
   // ── LANGUAGE ──
   function setLang(lang) {
@@ -1149,15 +1179,28 @@ footer {
     const email = document.getElementById('popup-email').value.trim();
 
     const hp = document.querySelector('#popup-form input[name="company"]');
-    await saveLead({
+    const consent = document.querySelector('#popup-form input[name="sms_consent"]');
+    const btn = e.target.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; }
+
+    const ok = await Selah.saveLead({
       name,
       phone,
       email: email || '',
       source: 'website_popup',
       service: 'free_assessment',
-      company: hp ? hp.value : ''
+      company: hp ? hp.value : '',
+      sms_consent: consent && consent.checked ? 'true' : 'false',
+      consent_text: consent && consent.checked ? Selah.CONSENT_TEXT : ''
     });
 
+    if (btn) { btn.disabled = false; btn.style.opacity = ''; }
+    if (!ok) {
+      document.getElementById('popup-error').style.display = 'block';
+      return;
+    }
+
+    document.getElementById('popup-error').style.display = 'none';
     document.getElementById('popup-form').style.display = 'none';
     document.getElementById('popup-success').style.display = 'block';
     setTimeout(closePopup, 5000);
@@ -1168,17 +1211,28 @@ footer {
     e.preventDefault();
     const form = e.target;
     const d = Object.fromEntries(new FormData(form));
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; }
 
-    await saveLead({
+    const ok = await Selah.saveLead({
       name: `${d.first_name} ${d.last_name}`.trim(),
       phone: d.phone,
       email: d.email || '',
       service: d.service_type || '',
       message: d.message || '',
       source: 'website_contact_form',
-      company: d.company || ''
+      company: d.company || '',
+      sms_consent: d.sms_consent === 'true' ? 'true' : 'false',
+      consent_text: d.sms_consent === 'true' ? Selah.CONSENT_TEXT : ''
     });
 
+    if (btn) { btn.disabled = false; btn.style.opacity = ''; }
+    if (!ok) {
+      document.getElementById('contact-error').style.display = 'block';
+      return;
+    }
+
+    document.getElementById('contact-error').style.display = 'none';
     form.style.display = 'none';
     document.getElementById('contact-success').style.display = 'block';
   }
