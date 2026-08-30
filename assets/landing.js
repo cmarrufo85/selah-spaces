@@ -50,12 +50,27 @@
     if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; }
     if (errEl) errEl.style.display = 'none';
 
+    // Optional qualifying fields (name="q_*") ride along inside the message.
+    // The Supabase fallback writes a fixed schema, so anything not folded in
+    // here is lost the moment the primary endpoint is down — which is exactly
+    // when we least want to drop a commercial lead.
+    var extras = Object.keys(data)
+      .filter(function (k) { return k.indexOf('q_') === 0 && data[k]; })
+      .map(function (k) {
+        var el = form.querySelector('[name="' + k + '"]');
+        var label = (el && el.getAttribute('data-label')) || k.slice(2).replace(/_/g, ' ');
+        return label + ': ' + data[k];
+      });
+    var message = extras.length
+      ? extras.join('\n') + (data.message ? '\n\n' + data.message : '')
+      : (data.message || '');
+
     var consented = data.sms_consent === 'true';
     var ok = await w.Selah.saveLead({
       name: (data.name || ((data.first_name || '') + ' ' + (data.last_name || ''))).trim(),
       phone: data.phone || '',
       email: data.email || '',
-      message: data.message || '',
+      message: message,
       service: data.service || form.dataset.service || '',
       source: form.dataset.source || 'landing_page',
       company: data.company || '',
