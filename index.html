@@ -209,13 +209,82 @@ nav {
   padding: 140px 24px 100px;
   position: relative; overflow: hidden;
 }
+/* ── AMBIENT HERO MOTION ──────────────────────────────────────────────
+   Light moving across a surface that was just cleaned, and dust drifting
+   in it. Pure CSS: no video, no canvas, no JS, nothing to download. The
+   whole effect is three composited layers behind the text, so it never
+   touches LCP and never blocks the main thread. Disabled outright for
+   anyone who asked for reduced motion. */
 .hero::before {
   content: '';
-  position: absolute; inset: 0;
+  position: absolute; inset: 0; z-index: 0;
   background:
     radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.07) 0%, transparent 65%),
     radial-gradient(ellipse at 20% 80%, rgba(201,169,110,0.03) 0%, transparent 50%);
   pointer-events: none;
+  animation: ambientBreathe 21s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+/* The polish sweep — a soft band of light travelling across the room. */
+.hero::after {
+  content: '';
+  position: absolute; top: -25%; left: 0; z-index: 0;
+  width: 40%; height: 150%;
+  background: linear-gradient(100deg,
+    transparent 0%,
+    rgba(201,169,110,0.05) 42%,
+    rgba(247,243,238,0.05) 50%,
+    rgba(201,169,110,0.05) 58%,
+    transparent 100%);
+  filter: blur(26px);
+  pointer-events: none;
+  animation: polishSweep 19s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+/* Motes catching the light. Two layers at different speeds read as depth. */
+.hero-motes {
+  position: absolute; inset: -12% 0; z-index: 0; pointer-events: none;
+  background-image:
+    radial-gradient(1.6px 1.6px at 12% 28%, rgba(247,243,238,0.30), transparent 62%),
+    radial-gradient(1.2px 1.2px at 27% 66%, rgba(201,169,110,0.34), transparent 62%),
+    radial-gradient(1.8px 1.8px at 44% 18%, rgba(247,243,238,0.22), transparent 62%),
+    radial-gradient(1.1px 1.1px at 61% 74%, rgba(201,169,110,0.28), transparent 62%),
+    radial-gradient(1.5px 1.5px at 78% 38%, rgba(247,243,238,0.26), transparent 62%),
+    radial-gradient(1.3px 1.3px at 89% 62%, rgba(201,169,110,0.30), transparent 62%),
+    radial-gradient(1.4px 1.4px at 34% 88%, rgba(247,243,238,0.20), transparent 62%),
+    radial-gradient(1.2px 1.2px at 69% 8%,  rgba(201,169,110,0.24), transparent 62%);
+  animation: moteDrift 46s linear infinite;
+  will-change: transform;
+}
+.hero-motes.slow {
+  background-image:
+    radial-gradient(2.1px 2.1px at 19% 52%, rgba(247,243,238,0.16), transparent 60%),
+    radial-gradient(2.4px 2.4px at 53% 34%, rgba(201,169,110,0.18), transparent 60%),
+    radial-gradient(1.9px 1.9px at 84% 79%, rgba(247,243,238,0.14), transparent 60%),
+    radial-gradient(2.2px 2.2px at 71% 22%, rgba(201,169,110,0.15), transparent 60%);
+  animation-duration: 74s;
+  animation-direction: reverse;
+}
+/* Text sits above every decorative layer. */
+.hero > *:not(.hero-motes) { position: relative; z-index: 1; }
+
+@keyframes ambientBreathe {
+  0%, 100% { transform: scale(1);    opacity: 1;    }
+  50%      { transform: scale(1.09); opacity: 0.72; }
+}
+@keyframes polishSweep {
+  0%       { transform: translate3d(-45%, 0, 0) rotate(9deg); opacity: 0; }
+  14%      { opacity: 1; }
+  86%      { opacity: 1; }
+  100%     { transform: translate3d(295%, 0, 0) rotate(9deg); opacity: 0; }
+}
+@keyframes moteDrift {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-3%, -12%, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero::before, .hero::after, .hero-motes { animation: none; }
+  .hero::after, .hero-motes { opacity: 0; }
 }
 .hero-eyebrow {
   font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
@@ -738,6 +807,8 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-motes" aria-hidden="true"></div>
+  <div class="hero-motes slow" aria-hidden="true"></div>
   <p class="hero-eyebrow" data-en="Premium Residential Cleaning · Lubbock, Texas" data-es="Limpieza Residencial Premium · Lubbock, Texas">Premium Residential Cleaning · Lubbock, Texas</p>
   <h1 class="hero-headline">
     <span data-en="Your Home," data-es="Tu Hogar,">Your Home,</span>
