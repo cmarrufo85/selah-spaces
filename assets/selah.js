@@ -23,7 +23,7 @@
   // disable that tracker entirely — no network calls, no console noise.
   var CONFIG = {
     PIXEL_ID: '',            // Meta Pixel, e.g. '1234567890123456'
-    GA4_ID: '',              // Google Analytics 4, e.g. 'G-XXXXXXXXXX'
+    GA4_ID: 'G-DSLGXTTEXG',  // Google Analytics 4
     LEAD_ENDPOINT: 'https://selah-voice-5007-prod.twil.io/lead',
     SUPABASE_URL: 'https://upfvakfjfyzvqnnqvgpq.supabase.co',
     SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwZnZha2ZqZnl6dnFubnF2Z3BxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE3NDI0MjAsImV4cCI6MjA5NzMxODQyMH0.BO_ZUG3xKKbWkoIbrrG8vRXb9agO03hwkaL9ie_8yg0',
